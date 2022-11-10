@@ -10,22 +10,9 @@ import defaultContacts from '../data/contacts.json';
 
 export function App() {
   const [contacts, setContacts] = useState(() => {
-    return JSON.parse(localStorage.getItem('contacts')) ?? [];
+    return JSON.parse(localStorage.getItem('contacts')) ?? [...defaultContacts];
   });
   const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    const contacts = localStorage.getItem('contacts');
-    const parseContacts = JSON.parse(contacts);
-
-    if (parseContacts) {
-      setContacts(parseContacts);
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(defaultContacts));
-  }, []);
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
